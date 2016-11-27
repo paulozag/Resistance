@@ -47,6 +47,8 @@ mission_5 = game.missions.create(   mission_number: 5,
 
 =begin
 to paste in console
+
+game = Game.first
 player_1 = Player.find(1)
 player_2 = Player.find(2)
 player_3 = Player.find(3)
@@ -61,4 +63,9 @@ mission_3 = Mission.find(3)
 mission_4 = Mission.find(4)
 mission_5 = Mission.find(5)
 
+round_1 = mission_1.rounds.create(leader: player_1, is_a_go: false)
+round_1.team_mbrs.create(member_id: player_1.id)
+round_1.team_mbrs.create(member_id: player_2.id)
+mission_1.team_mbrs.create(member_id: player_1.id)
+mission_1.team_mbrs.create(member_id: player_2.id)
 =end

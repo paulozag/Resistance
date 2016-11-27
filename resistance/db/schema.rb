@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20161126224853) do
   end
 
   create_table "team_mbrs", force: :cascade do |t|
-    t.integer  "player_id"
+    t.integer  "member_id"
     t.integer  "team_mbrable_id"
     t.string   "team_mbrable_type"
     t.datetime "created_at",        null: false
