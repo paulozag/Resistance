@@ -68,4 +68,8 @@ round_1.team_mbrs.create(member_id: player_1.id)
 round_1.team_mbrs.create(member_id: player_2.id)
 mission_1.team_mbrs.create(member_id: player_1.id)
 mission_1.team_mbrs.create(member_id: player_2.id)
+
+mission_1.votes.create(up_vote: false, voter_id: player_1.id)
+round_1.votes.create(up_vote: false, voter_id: player_1.id)
+
 =end

@@ -61,12 +61,12 @@ ActiveRecord::Schema.define(version: 20161126224853) do
   create_table "votes", force: :cascade do |t|
     t.boolean  "up_vote"
     t.integer  "voter_id"
-    t.integer  "votable_id"
-    t.string   "votable_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "voteable_id"
+    t.string   "voteable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id", using: :btree
+  add_index "votes", ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id", using: :btree
 
 end
