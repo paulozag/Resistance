@@ -15,35 +15,35 @@ player_5 = game.players.create(name: 'player5', is_spy: false)
 player_6 = game.players.create(name: 'player6', is_spy: false)
 player_7 = game.players.create(name: 'player7', is_spy: false)
 
-mission_1 = game.missions.create(   mission_number: 1,
-                                    member_count: 2,
-                                    double_fail: false,
-                                    resolved: false,
-                                    success: false)
+# mission_1 = game.missions.create(   mission_number: 1,
+#                                     member_count: 2,
+#                                     double_fail: false,
+#                                     resolved: false,
+#                                     success: false)
 
-mission_2 = game.missions.create(   mission_number: 2,
-                                    member_count: 3,
-                                    double_fail: false,
-                                    resolved: false,
-                                    success: false)
+# mission_2 = game.missions.create(   mission_number: 2,
+#                                     member_count: 3,
+#                                     double_fail: false,
+#                                     resolved: false,
+#                                     success: false)
 
-mission_3 = game.missions.create(   mission_number: 3,
-                                    member_count: 3,
-                                    double_fail: false,
-                                    resolved: false,
-                                    success: false)
+# mission_3 = game.missions.create(   mission_number: 3,
+#                                     member_count: 3,
+#                                     double_fail: false,
+#                                     resolved: false,
+#                                     success: false)
 
-mission_4 = game.missions.create(   mission_number: 4,
-                                    member_count: 4,
-                                    double_fail: true,
-                                    resolved: false,
-                                    success: false)
+# mission_4 = game.missions.create(   mission_number: 4,
+#                                     member_count: 4,
+#                                     double_fail: true,
+#                                     resolved: false,
+#                                     success: false)
 
-mission_5 = game.missions.create(   mission_number: 5,
-                                    member_count: 4,
-                                    double_fail: false,
-                                    resolved: false,
-                                    success: false)
+# mission_5 = game.missions.create(   mission_number: 5,
+#                                     member_count: 4,
+#                                     double_fail: false,
+#                                     resolved: false,
+#                                     success: false)
 
 =begin
 to paste in console
