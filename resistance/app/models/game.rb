@@ -1,6 +1,7 @@
 class Game < ActiveRecord::Base
   has_many :missions
   has_many :players
+  scope :joinable, -> { where(joinable: true) }
 
   def player_count
     @player_count ||= self.players.count

@@ -16,8 +16,9 @@ ActiveRecord::Schema.define(version: 20161213223015) do
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "joinable",   default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "missions", force: :cascade do |t|

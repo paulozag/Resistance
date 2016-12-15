@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   def create
     p params[:user]
     @user = User.create(user_params)
-
   end
 
   private

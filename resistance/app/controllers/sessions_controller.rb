@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    highlight params
   end
 
   def destroy
