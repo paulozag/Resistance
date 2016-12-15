@@ -1,4 +1,5 @@
 class Game < ActiveRecord::Base
+  belongs_to :creator, class_name: "Player"
   has_many :missions
   has_many :players
   scope :joinable, -> { where(joinable: true) }
