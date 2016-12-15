@@ -1,0 +1,19 @@
+<h1>user form</h1>
+
+<%= form_for user do |f| %>
+
+  <div>
+    <%= f.label :name  %>
+    <%= f.text_field :name  %>
+  </div>
+  <div>
+    <%= f.label :password  %>
+    <%= f.password_field :password  %>
+  </div>
+  <div>
+    <%= f.submit  %>
+  </div>
+
+
+
+<% end %>
