@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @joinable_games = Games.joinable
-
+    @joinable_games = Game.joinable
+    highlight 'in index controller'
   end
 end

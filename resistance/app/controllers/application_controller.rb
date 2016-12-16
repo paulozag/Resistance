@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def login
-    session[:user_id] = @user.user_id
+    session[:user_id] = @user.id
   end
 
   def log_out

@@ -4,15 +4,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    highlight params
-    @user = User.find_by :name params[:name]
+    @user = User.find_by name: params[:name]
     unless @user && @user.password == params[:password]
       @errors = @user ?   ['password does not match'] :
                           ['No user by that name']
       render 'new' and return
     end
     login
-    redirect 'games#index'
+    redirect_to '/games#index'
   end
 
   def destroy
