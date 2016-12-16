@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     #TODO validate uniqueness of name for users
     login
-    redirect_to 'games#index'
+    redirect_to '/games#index'
   end
 
   private
