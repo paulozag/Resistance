@@ -10,4 +10,17 @@ class ApplicationController < ActionController::Base
     p "*" * 80
   end
 
+  def helper_test
+    highlight "paul"
+  end
+
+  def login
+    session[:user_id] = @user.user_id
+  end
+
+  def log_out
+    session[:user_id] = nil
+  end
+
+
 end
