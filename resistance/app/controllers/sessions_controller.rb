@@ -12,9 +12,7 @@ class SessionsController < ApplicationController
       render 'new' and return
     end
     login
-    redirect 'players#new'
-
-
+    redirect 'games#index'
   end
 
   def destroy

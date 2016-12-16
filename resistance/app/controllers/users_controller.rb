@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   def create
     p params[:user]
     @user = User.create(user_params)
+    #TODO validate uniqueness of name for users
+    login
+    redirect 'games#index'
   end
 
   private
