@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users, only: [:new, :create]
-  resources :games, only: [:index, :show]
+  resources :games, only: [:index, :show, :new, :create]
   resources :players, only: [:new, :create]
 
   get '/login',     to: 'sessions#new'
