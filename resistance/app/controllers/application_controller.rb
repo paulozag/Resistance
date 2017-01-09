@@ -10,16 +10,17 @@ class ApplicationController < ActionController::Base
     p "*" * 80
   end
 
-  def helper_test
-    highlight "paul"
-  end
-
   def login
     session[:user_id] = @user.id
   end
 
   def log_out
     session[:user_id] = nil
+  end
+
+  def current_user
+    return nil unless session[:user_id]
+    User.find(session[:user_id])
   end
 
 
