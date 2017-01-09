@@ -1,0 +1,19 @@
+<h1>game form</h1>
+
+<%= form_for game do |f| %>
+
+  <div>
+    <%= f.label :game_name  %>
+    <%= f.text_field :game_name  %>
+  </div>
+  <div>
+    <%= f.label :game_key  %>
+    <%= f.text_field :game_key  %>
+  </div>
+  <div>
+    <%= f.submit  %>
+  </div>
+
+
+
+<% end %>
