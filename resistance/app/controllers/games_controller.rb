@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     player.game = @game
     @game.players << player
 
-    redirect_to game_path(id: @game.id)
+    redirect_to action: :game_room, id: @game.id
   end
 
   def show

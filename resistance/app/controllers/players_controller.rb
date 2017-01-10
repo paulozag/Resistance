@@ -4,6 +4,7 @@ class PlayersController < ApplicationController
 
   def create
     player =  Player.create(new_player_data)
+    # TODO add new player to game
     redirect_to controller: :games, action: :game_room, id: params[:game_id]
   end
 
