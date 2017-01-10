@@ -3,5 +3,7 @@ class PlayersController < ApplicationController
   end
 
   def create
+    p '&*&' *25
+
   end
 end
