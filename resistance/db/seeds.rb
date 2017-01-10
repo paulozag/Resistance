@@ -5,15 +5,38 @@ Round.destroy_all
 Vote.destroy_all
 TeamMbr.destroy_all
 
+user1     = User.create!(name: 'user1', password: 'user1')
+user2     = User.create!(name: 'user2', password: 'user2')
+user3     = User.create!(name: 'user3', password: 'user3')
+user4     = User.create!(name: 'user4', password: 'user4')
+user5     = User.create!(name: 'user5', password: 'user5')
+user6     = User.create!(name: 'user6', password: 'user6')
+user7     = User.create!(name: 'user7', password: 'user7')
 
-game = Game.create
-player_1 = game.players.create(name: 'player1', is_spy: true)
-player_2 = game.players.create(name: 'player2', is_spy: true)
-player_3 = game.players.create(name: 'player3', is_spy: true)
-player_4 = game.players.create(name: 'player4', is_spy: false)
-player_5 = game.players.create(name: 'player5', is_spy: false)
-player_6 = game.players.create(name: 'player6', is_spy: false)
-player_7 = game.players.create(name: 'player7', is_spy: false)
+game1 = user1.games.create!(game_name: 'user 1s game')
+game1 = user2.games.create!(game_name: 'user 2s game')
+
+player_1  = game1.players.create!( name: 'player1',
+                                  is_spy: true,
+                                  user_id: user1)
+player_2  = game1.players.create!( name: 'player2',
+                                  is_spy: true,
+                                  user_id: user2)
+player_3  = game1.players.create!( name: 'player3',
+                                  is_spy: true,
+                                  user_id: user3)
+player_4  = game1.players.create!( name: 'player4',
+                                  is_spy: false,
+                                  user_id: user4)
+player_5  = game1.players.create!( name: 'player5',
+                                  is_spy: false,
+                                  user_id: user5)
+player_6  = game1.players.create!( name: 'player6',
+                                  is_spy: false,
+                                  user_id: user6)
+player_7  = game1.players.create!( name: 'player7',
+                                  is_spy: false,
+                                  user_id: user7)
 
 # mission_1 = game.missions.create(   mission_number: 1,
 #                                     member_count: 2,

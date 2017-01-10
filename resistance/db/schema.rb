@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126224853) do
+ActiveRecord::Schema.define(version: 20170109211907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "joinable",   default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "creator_id"
+    t.string   "game_name"
+    t.string   "game_key"
   end
 
   create_table "missions", force: :cascade do |t|
@@ -35,6 +38,7 @@ ActiveRecord::Schema.define(version: 20161126224853) do
   create_table "players", force: :cascade do |t|
     t.string   "name"
     t.boolean  "is_spy"
+    t.integer  "user_id"
     t.integer  "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,23 +54,28 @@ ActiveRecord::Schema.define(version: 20161126224853) do
 
   create_table "team_mbrs", force: :cascade do |t|
     t.integer  "member_id"
-    t.integer  "team_mbrable_id"
     t.string   "team_mbrable_type"
+    t.integer  "team_mbrable_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.index ["team_mbrable_type", "team_mbrable_id"], name: "index_team_mbrs_on_team_mbrable_type_and_team_mbrable_id", using: :btree
   end
 
-  add_index "team_mbrs", ["team_mbrable_type", "team_mbrable_id"], name: "index_team_mbrs_on_team_mbrable_type_and_team_mbrable_id", using: :btree
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "votes", force: :cascade do |t|
     t.boolean  "up_vote"
     t.integer  "voter_id"
-    t.integer  "voteable_id"
     t.string   "voteable_type"
+    t.integer  "voteable_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id", using: :btree
   end
-
-  add_index "votes", ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id", using: :btree
 
 end

@@ -3,6 +3,7 @@ class CreatePlayers < ActiveRecord::Migration
     create_table :players do |t|
       t.string      :name
       t.boolean     :is_spy
+      t.references  :user
       t.references  :game
 
       t.timestamps null: false
