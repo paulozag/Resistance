@@ -3,11 +3,8 @@ class PlayersController < ApplicationController
   end
 
   def create
-    p '&*&' *25
-    p params
-
     player =  Player.create(new_player_data)
-
+    redirect_to controller: :games, action: :game_room, id: params[:game_id]
   end
 
   def new_player_data
