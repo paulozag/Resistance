@@ -22,6 +22,11 @@ class GamesController < ApplicationController
     @player = Player.new
   end
 
+  def game_room
+  end
+
+
+
   private
   def game_params
     params.require(:game).permit(:game_name, :game_key)

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :games, only: [:index, :show, :new, :create]
   resources :players, only: [:new, :create]
 
+  get '/games/:id/game_room', to: 'games#game_room'
   get '/login',     to: 'sessions#new'
   post '/login',    to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
