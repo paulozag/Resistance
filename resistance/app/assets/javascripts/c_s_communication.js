@@ -8,7 +8,7 @@
 
 $(document).ready(function(){
   console.log('hello');
-  App.global_chat = initializeSubscription();
+  initializeSubscription();
   gameRoomListener();
 });
 
