@@ -8,4 +8,8 @@ class GameRoomChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
+
+  def test
+    highlight 'hit the test route'
+  end
 end
