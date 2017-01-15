@@ -1,4 +1,4 @@
-<h1>Game Room</h1>
+<h1 id="game-room", data-room-id="<%= @game.id  %>">Game Room</h1>
 
 <p>
   <button id='button-1'>button 1</button>
@@ -11,3 +11,7 @@
 <p>
   <button id="button-3">button 3</button>
 </p>
+
+<%= javascript_tag do %>
+  initializeSubscription();
+<% end %>

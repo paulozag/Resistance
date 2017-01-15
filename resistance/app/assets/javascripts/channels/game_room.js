@@ -1,13 +1,24 @@
-App.game_room = App.cable.subscriptions.create("GameRoomChannel", {
-  connected: function() {
-    // Called when the subscription is ready for use on the server
-  },
 
-  disconnected: function() {
-    // Called when the subscription has been terminated by the server
-  },
-
-  received: function(data) {
-    // Called when there's incoming data on the websocket for this channel
-  }
+$(document).ready(function(){
+  gameRoomListener();
 });
+
+var gameRoomListener = function(){
+  var gameRoomID = $('#game-room').data('room-id');
+  $('#button-1').on('click', function(e){
+    console.log('button 1 pressed!');
+    App.global_chat.perform('test_route', { room: gameRoomID})
+  })
+}
+
+var initializeSubscription = function(){
+  var gameRoomID = $('#game-room').data('room-id');
+  console.log("in initialize subscription with a room-id value of: ", gameRoomID)
+  App.global_chat = App.cable.subscriptions.create(
+        { channel:  "GameRoomChannel",
+          room: gameRoomID},
+        { connected: function(){},
+          disconnected:    function(){},
+          received: function(data){ console.log('received data')}
+        });
+}

@@ -23,8 +23,7 @@ class GamesController < ApplicationController
   end
 
   def game_room
-    p "&*&" * 30
-    p "hits game_room method with params id of: #{params[:id]}"
+    @game = Game.find(params[:id])
   end
 
 
