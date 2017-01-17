@@ -5,15 +5,18 @@ class Game < ActiveRecord::Base
   scope :joinable, -> { where(joinable: true) }
 
   def player_count
-    @player_count ||= self.players.count
+    self.players.count
   end
 
   def create_missions
-
     (1..5).each do |mission_number|
       # self.missions.create(generate_mission_parameters(mission_number))
       p generate_mission_parameters(mission_number)
     end
+  end
+
+  def playable?
+    player_count >= 5
   end
 
 
