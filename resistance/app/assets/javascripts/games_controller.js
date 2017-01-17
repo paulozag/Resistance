@@ -6,6 +6,4 @@ var GameController = function(gameData){
 
 GameController.prototype.receive = function(data){
   console.log('receiving message from server broadcast')
-  console.log('game controller game number ', this.roomID)
-  console.log('game controller player number ', this.playerID)
 }
