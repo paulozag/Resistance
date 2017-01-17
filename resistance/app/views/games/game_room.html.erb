@@ -13,5 +13,7 @@
 </p>
 
 <%= javascript_tag do %>
-  initializeSubscription();
+  $(document).ready(function(){
+    initializeSubscription();
+  });
 <% end %>
