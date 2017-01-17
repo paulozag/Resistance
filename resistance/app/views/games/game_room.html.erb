@@ -12,6 +12,17 @@
   <button id="button-3">button 3</button>
 </p>
 
+
+<div id='waiting-players-section'>
+  <h2 >players</h2>
+  <ul id='waiting-players-list'>
+    <% @game.players.each do |player| %>
+      <p><%= player.name  %></p>
+    <% end %>
+  </ul>
+</div>
+
+
 <%= javascript_tag do %>
   $(document).ready(function(){
     initializeSubscription();
