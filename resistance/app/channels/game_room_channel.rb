@@ -11,4 +11,12 @@ class GameRoomChannel < ApplicationCable::Channel
   def test_route
     TestRouteJob.perform_later(room: params[:room])
   end
+
+  def add_player
+    # payload = {
+    #             room: params[:room],
+    #             new_player_name: Player.find(params[:player_id].name)
+    # }
+    # AddPlayerJob.perform_later(payload)
+  end
 end

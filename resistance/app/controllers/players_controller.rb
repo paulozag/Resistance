@@ -3,9 +3,11 @@ class PlayersController < ApplicationController
   end
 
   def create
+    # TODO check to see if game_key is a match
     player =  Player.create(new_player_data)
-    # TODO add new player to game
-    redirect_to controller: :games, action: :game_room, id: params[:game_id]
+    # TODO player validation
+    redirect_to controller: :games, action: :game_room,
+                id: params[:game_id], player_id: player.id
   end
 
   def new_player_data

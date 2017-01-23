@@ -1,4 +1,4 @@
-<h1 id="game-room", data-room-id="<%= @game.id  %>">Game Room</h1>
+<h1 id="game-room", data-room-id="<%= @game.id  %>", data-player-id="<%= @player.id  %>">Game Room</h1>
 
 <p>
   <button id='button-1'>button 1</button>
@@ -12,6 +12,24 @@
   <button id="button-3">button 3</button>
 </p>
 
+
+<div id='waiting-players-section'>
+  <h2 >players</h2>
+  <ul id='waiting-players-list'>
+    <% @game.players.each do |player| %>
+      <p><%= player.name  %></p>
+    <% end %>
+  </ul>
+</div>
+
+<div id="start-game-section" class="hidden">
+  <button id='start-game'>start game</button>
+</div>
+
+
 <%= javascript_tag do %>
-  initializeSubscription();
+  $(document).ready(function(){
+    console.log('hello')
+    initializeSubscription();
+  });
 <% end %>

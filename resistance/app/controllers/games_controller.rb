@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     player.game = @game
     @game.players << player
 
-    redirect_to action: :game_room, id: @game.id
+    redirect_to action: :game_room, id: @game.id, player_id: player.id
   end
 
   def show
@@ -24,6 +24,10 @@ class GamesController < ApplicationController
 
   def game_room
     @game = Game.find(params[:id])
+    @player = Player.find(params[:player_id])
+    AddPlayerJob.perform_later( room:             @game.id,
+                                player_id:        @player.id,
+                                new_player_name:  @player[:name])
   end
 
   private
