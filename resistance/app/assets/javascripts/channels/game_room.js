@@ -11,7 +11,7 @@ var gameRoomListener = function(){
 }
 
 var initializeSubscription = function(){
-  // console.log("in init subs, room-id is: ", $('#game-room').data('room-id'))
+  console.log('in init subscr')
   var gameData = {  roomID: $('#game-room').data('room-id'),
                     playerID: $('#game-room').data('player-id')
                     }
