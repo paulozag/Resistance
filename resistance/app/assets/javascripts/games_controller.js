@@ -5,10 +5,8 @@ var GameController = function(gameData){
 }
 
 GameController.prototype.receive = function(data){
-  console.log('in receive prototype      ')
   switch(data.action){
     case 'addPlayer':
-      console.log('in add player case, this is = ', this)
       this.addPlayer(data);
       break;
     default:
@@ -20,9 +18,6 @@ GameController.prototype.receive = function(data){
 GameController.prototype.addPlayer = function(data){
   console.log(data)
   if (data.playerID != $('#game-room').data('player-id')){
-    console.log('in IF of add player')
-
     $('#waiting-players-list').append('<li>' + data.newPlayerName + '</li>')
   }
-
 }
