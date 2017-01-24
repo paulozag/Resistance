@@ -21,6 +21,7 @@ class GameRoomChannel < ApplicationCable::Channel
   end
 
   def start_game
+    highlight 'in start game method of room channel'
     payload = {
       room: params[:room],
       testPhrase: 'received from startGameJob'

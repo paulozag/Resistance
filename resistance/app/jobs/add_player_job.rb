@@ -4,7 +4,7 @@ class AddPlayerJob < ApplicationJob
   def perform(data)
     payload = {
       room:           data[:room],
-      playerID:       data[:player_id],
+      playerId:       data[:player_id],
       newPlayerName:  data[:new_player_name],
       action:         'addPlayer'
     }

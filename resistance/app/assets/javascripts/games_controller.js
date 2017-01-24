@@ -1,6 +1,6 @@
 var GameController = function(gameData){
-  this.roomID = gameData.roomID;
-  this.playerID = gameData.playerID;
+  this.roomId = gameData.roomId;
+  this.playerId = gameData.playerId;
 }
 
 GameController.prototype.receive = function(data){
@@ -19,7 +19,7 @@ GameController.prototype.receive = function(data){
 }
 
 GameController.prototype.addPlayer = function(data){
-  if (data.playerID != $('#game-room').data('player-id')){
+  if (data.playerId != this.playerId){
     $('#waiting-players-list').append('<li>' + data.newPlayerName + '</li>');
   }
 };
