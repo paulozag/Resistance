@@ -1,4 +1,7 @@
 class Game < ActiveRecord::Base
+
+  attr_reader :team
+
   belongs_to :creator, class_name: "User"
   has_many :missions
   has_many :players
@@ -25,6 +28,7 @@ class Game < ActiveRecord::Base
 
     # assign spies
     assign_spies
+    @team = self.players.shuffle
     self.save
   end
 
