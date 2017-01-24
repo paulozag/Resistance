@@ -85,7 +85,10 @@ class Game < ActiveRecord::Base
       player.turn_order = index
       player.save
     end
+  end
 
+  def team
+    self.players.sort {|a,b| a.turn_order <=> b.turn_order}
   end
 
   def assign_spies
