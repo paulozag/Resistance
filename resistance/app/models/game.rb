@@ -1,6 +1,7 @@
 class Game < ActiveRecord::Base
 
   attr_reader :team
+  attr_accessor :round_attempts
 
   belongs_to :creator, class_name: "User"
   has_many :missions
@@ -29,7 +30,13 @@ class Game < ActiveRecord::Base
     # assign spies
     assign_spies
     @team = self.players.shuffle
+    @team_count = self.player_count
+    @round_attempts = 0
     self.save
+  end
+
+  def leader
+    self.team[@round_attempts % @team_count]
   end
 
   private
