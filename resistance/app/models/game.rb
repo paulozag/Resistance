@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
 
   attr_reader :team
-  attr_accessor :round_attempts
+  attr_accessor :rounds
 
   belongs_to :creator, class_name: "User"
   has_many :missions
@@ -10,13 +10,6 @@ class Game < ActiveRecord::Base
 
   def player_count
     self.players.count
-  end
-
-  def create_missions
-    (1..5).each do |mission_number|
-      # self.missions.create(generate_mission_parameters(mission_number))
-      p generate_mission_parameters(mission_number)
-    end
   end
 
   def playable?
@@ -32,11 +25,12 @@ class Game < ActiveRecord::Base
     @team = self.players.shuffle
     @team_count = self.player_count
     @round_attempts = 0
+    create_missions
     self.save
   end
 
   def leader
-    self.team[@round_attempts % @team_count]
+    self.team[@rounds % @team_count]
   end
 
   private
@@ -79,6 +73,13 @@ class Game < ActiveRecord::Base
                    mission_5: {  member_count: 5, double_fail: false}
                 }
       }
+  end
+
+  def create_missions
+    (1..5).each do |mission_number|
+      self.missions.create(generate_mission_parameters(mission_number))
+      # p generate_mission_parameters(mission_number)
+    end
   end
 
   def assign_spies
