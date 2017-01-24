@@ -26,8 +26,6 @@ class Game < ActiveRecord::Base
     self.save
   end
 
-
-
   def rounds_played
     self.missions.reduce(0) { |total, mission| total + mission.rounds.count}
   end
