@@ -23,6 +23,7 @@ class Game < ActiveRecord::Base
     # assign spies
     assign_spies
     create_missions
+    assign_turn_orders
     self.save
   end
 
@@ -77,6 +78,14 @@ class Game < ActiveRecord::Base
       self.missions.create(generate_mission_parameters(mission_number))
       # p generate_mission_parameters(mission_number)
     end
+  end
+
+  def assign_turn_orders
+    self.players.shuffle.each_with_index do  |player, index|
+      player.turn_order = index
+      player.save
+    end
+
   end
 
   def assign_spies
