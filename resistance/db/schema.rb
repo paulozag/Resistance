@@ -46,11 +46,12 @@ ActiveRecord::Schema.define(version: 20170109211907) do
   end
 
   create_table "rounds", force: :cascade do |t|
-    t.boolean  "is_a_go"
+    t.boolean  "is_a_go",    default: false
+    t.boolean  "resolved",   default: false
     t.integer  "leader_id"
     t.integer  "mission_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "team_mbrs", force: :cascade do |t|
