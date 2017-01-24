@@ -19,6 +19,14 @@ class Game < ActiveRecord::Base
     player_count >= 5
   end
 
+  def start_game
+    # change joinable to false
+    self.joinable = false
+
+    # assign spies
+    assign_spies
+    self.save
+  end
 
   private
   def mission_hash
@@ -62,10 +70,19 @@ class Game < ActiveRecord::Base
       }
   end
 
+  def assign_spies
+    player_indices = (0...player_count).to_a.shuffle
+    spy_indices = []
+    num_spies.times { spy_indices << player_indices.pop }
+    spy_indices.each do |index|
+      self.players[index].is_spy = true
+      self.players[index].save
+    end
+  end
+
   def generate_mission_parameters(mission_number)
     base_mission_parameters = { resolved: false, success: false}
     mission_specific_parameters = generate_mission_specific_parameters(mission_number)
-
     base_mission_parameters.merge(mission_specific_parameters)
   end
 
@@ -73,5 +90,10 @@ class Game < ActiveRecord::Base
     mission_number_key = ('mission_' + mission_number.to_s).to_sym
     mission_number_kv = {mission_number: mission_number}
     mission_hash[player_count][mission_number_key].merge(mission_number_kv)
+  end
+
+  def num_spies
+    number_of_spies = [nil, nil, nil, nil, nil, 2,2,3,3,3,4]
+    number_of_spies[player_count]
   end
 end
