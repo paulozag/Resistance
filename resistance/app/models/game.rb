@@ -22,15 +22,14 @@ class Game < ActiveRecord::Base
 
     # assign spies
     assign_spies
-    @team = self.players.shuffle
-    @team_count = self.player_count
-    @round_attempts = 0
     create_missions
     self.save
   end
 
-  def leader
-    self.team[@rounds % @team_count]
+
+
+  def rounds_played
+    self.missions.reduce(0) { |total, mission| total + mission.rounds.count}
   end
 
   private
