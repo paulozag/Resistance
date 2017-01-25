@@ -11,6 +11,8 @@ class GamesController < ApplicationController
   def create
     player = create_player
     @game = current_user.games.create(game_params)
+    @game.player_creator_id = player.id
+    @game.save
     player.game = @game
     @game.players << player
 
