@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20170109211907) do
 
   create_table "games", force: :cascade do |t|
     t.boolean  "joinable",   default: true
+    t.string   "stage",      default: "waiting_to_start"
     t.integer  "creator_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "game_name"
     t.string   "game_key"
   end
