@@ -19,8 +19,8 @@ var startGameListener = function(){
   }
 
 var initializeSubscription = function(){
-  var gameData = {  roomID: $('#game-room').data('room-id'),
-                    playerID: $('#game-room').data('player-id')
+  var gameData = {  roomId: $('#game-room').data('room-id'),
+                    playerId: $('#game-room').data('player-id')
                     };
   if (!gameRoomController){
     gameRoomController = new GameController(gameData);
@@ -28,7 +28,7 @@ var initializeSubscription = function(){
 
   App.global_chat = App.cable.subscriptions.create(
         { channel:  "GameRoomChannel",
-          room: gameData.roomID},
+          room: gameData.roomId},
         { connected:        function(){},
           disconnected:     function(){},
           received: function(data){ gameRoomController.receive(data)}
