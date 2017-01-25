@@ -23,6 +23,9 @@ GameController.prototype.addPlayer = function(data){
   if (data.playerId != this.playerId){
     $('#waiting-players-list').append('<li>' + data.newPlayerName + '</li>');
   }
+  console.log('creator id: ', data.creatorId)
+  console.log('this player is: ', this.playerId)
+  // if (data.creator == this.playerId)
 };
 
 GameController.prototype.startGame = function(data){
