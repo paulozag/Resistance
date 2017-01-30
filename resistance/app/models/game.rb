@@ -25,15 +25,16 @@ class Game < ActiveRecord::Base
     self.save
     p "*&" * 50
     p "rounds_played: #{rounds_played} player count: #{player_count} leader: #{team[rounds_played % player_count]}"
-    current_mission.rounds.create(leader_id: team[rounds_played % player_count].id)
+    open_first_mission
+
   end
 
   def current_mission
-    self.missions.find {|mission| !mission.resolved }
+    @current_mission ||= self.missions.find {|mission| !mission.resolved }
   end
 
   def current_round
-    current_mission.rounds.find {|round| !round.resolved}
+    @current_round ||= current_mission.rounds.find {|round| !round.resolved}
   end
 
   def rounds_played
@@ -41,10 +42,21 @@ class Game < ActiveRecord::Base
   end
 
   def team
-    self.players.sort {|a,b| a.turn_order <=> b.turn_order}
+    @team ||= self.players.sort {|a,b| a.turn_order <=> b.turn_order}
   end
 
   private
+
+  def open_first_mission
+    current_mission.rounds.create(leader_id: leader_id)
+    @status = "waiting_for_team_selection"
+    self.save
+  end
+
+  def leader_id
+    @leader_id ||= team[rounds_played % player_count].id
+  end
+
   def mission_hash
      {
           5 => {  mission_1: {  member_count: 2, double_fail: false},
