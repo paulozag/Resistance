@@ -33,4 +33,5 @@ GameController.prototype.addPlayer = function(data){
 
 GameController.prototype.startGame = function(data){
   console.log('in start game response');
+  App.global_chat.startGame();
 };

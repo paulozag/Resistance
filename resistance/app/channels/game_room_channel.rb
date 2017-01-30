@@ -21,9 +21,12 @@ class GameRoomChannel < ApplicationCable::Channel
   end
 
   def start_game
+    game = Game.find(params[:room])
+    # Start game logic in game model
     payload = {
       room: params[:room],
-      testPhrase: 'received from startGameJob'
+      testPhrase: 'received from startGameJob',
+      roundLeader:    game.current_round.leader
     }
     StartGameJob.perform_later(payload)
   end
