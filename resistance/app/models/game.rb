@@ -17,14 +17,20 @@ class Game < ActiveRecord::Base
   end
 
   def start_game
-    # change joinable to false
     self.joinable = false
 
-    # assign spies
     assign_spies
     create_missions
     assign_turn_orders
     self.save
+  end
+
+  def current_mission
+    self.missions.find {|mission| !mission.resolved }
+  end
+
+  def current_round
+    current_mission.rounds.find {|round| !round.resolved}
   end
 
   def rounds_played
