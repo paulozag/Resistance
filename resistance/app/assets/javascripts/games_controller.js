@@ -23,9 +23,12 @@ GameController.prototype.addPlayer = function(data){
   if (data.playerId != this.playerId){
     $('#waiting-players-list').append('<li>' + data.newPlayerName + '</li>');
   }
-  console.log('creator id: ', data.creatorId)
-  console.log('this player is: ', this.playerId)
-  // if (data.creator == this.playerId)
+  console.log('num players = ', data.numPlayers)
+  // debugger;
+  if (data.creatorId == this.playerId  && data.numPlayers >= 5){
+    console.log('in show game start')
+    $('#start-game-section').show()
+  }
 };
 
 GameController.prototype.startGame = function(data){
