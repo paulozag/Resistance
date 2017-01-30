@@ -23,6 +23,9 @@ class Game < ActiveRecord::Base
     create_missions
     assign_turn_orders
     self.save
+    p "*&" * 50
+    p "rounds_played: #{rounds_played} player count: #{player_count} leader: #{team[rounds_played % player_count]}"
+    current_mission.rounds.create(leader_id: team[rounds_played % player_count].id)
   end
 
   def current_mission
@@ -35,6 +38,10 @@ class Game < ActiveRecord::Base
 
   def rounds_played
     self.missions.reduce(0) { |total, mission| total + mission.rounds.count}
+  end
+
+  def team
+    self.players.sort {|a,b| a.turn_order <=> b.turn_order}
   end
 
   private
@@ -93,9 +100,6 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def team
-    self.players.sort {|a,b| a.turn_order <=> b.turn_order}
-  end
 
   def assign_spies
     player_indices = (0...player_count).to_a.shuffle
