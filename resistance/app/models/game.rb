@@ -23,8 +23,6 @@ class Game < ActiveRecord::Base
     create_missions
     assign_turn_orders
     self.save
-    p "*&" * 50
-    p "rounds_played: #{rounds_played} player count: #{player_count} leader: #{team[rounds_played % player_count]}"
     open_first_mission
 
   end
@@ -45,16 +43,16 @@ class Game < ActiveRecord::Base
     @team ||= self.players.sort {|a,b| a.turn_order <=> b.turn_order}
   end
 
-  private
+  # private
 
   def open_first_mission
-    current_mission.rounds.create(leader_id: leader_id)
+    current_mission.rounds.create(leader_id: current_leader.id)
     @status = "waiting_for_team_selection"
     self.save
   end
 
-  def leader_id
-    @leader_id ||= team[rounds_played % player_count].id
+  def current_leader
+    @leader ||= team[rounds_played % player_count]
   end
 
   def mission_hash

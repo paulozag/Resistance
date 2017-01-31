@@ -23,15 +23,17 @@ GameController.prototype.addPlayer = function(data){
   if (data.playerId != this.playerId){
     $('#waiting-players-list').append('<li>' + data.newPlayerName + '</li>');
   }
-  console.log('num players = ', data.numPlayers)
-  // debugger;
-  if (data.creatorId == this.playerId  && data.numPlayers >= 5){
+  if (data.creatorId == this.playerId  && data.numPlayers >= 2){
     console.log('in show game start')
     $('#start-game-section').show()
   }
 };
 
 GameController.prototype.startGame = function(data){
+  var gameRoomId = $('#game-room').data('room-id');
   console.log('in start game response');
-  App.global_chat.startGame();
+  $('#waiting-to-start-container').hide()
+  $('#game-in-play-container').show();
+  if (data.)
+  App.global_chat.perform('start_game', { room: gameRoomId});
 };
