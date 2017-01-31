@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117201719) do
+ActiveRecord::Schema.define(version: 20170109211907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.boolean  "joinable",   default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.boolean  "joinable",          default: true
+    t.string   "stage",             default: "waiting_to_start"
     t.integer  "creator_id"
+    t.integer  "player_creator_id"
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "game_name"
     t.string   "game_key"
-    t.boolean  "playable"
   end
 
   create_table "missions", force: :cascade do |t|
@@ -38,19 +39,21 @@ ActiveRecord::Schema.define(version: 20170117201719) do
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "is_spy"
+    t.integer  "turn_order"
+    t.boolean  "is_spy",     default: false
     t.integer  "user_id"
     t.integer  "game_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "rounds", force: :cascade do |t|
-    t.boolean  "is_a_go"
+    t.boolean  "is_a_go",    default: false
+    t.boolean  "resolved",   default: false
     t.integer  "leader_id"
     t.integer  "mission_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "team_mbrs", force: :cascade do |t|

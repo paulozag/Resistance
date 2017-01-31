@@ -1,4 +1,8 @@
 class Game < ActiveRecord::Base
+
+  attr_reader :team
+  attr_accessor :rounds
+
   belongs_to :creator, class_name: "User"
   has_many :missions
   has_many :players
@@ -8,19 +12,49 @@ class Game < ActiveRecord::Base
     self.players.count
   end
 
-  def create_missions
-    (1..5).each do |mission_number|
-      # self.missions.create(generate_mission_parameters(mission_number))
-      p generate_mission_parameters(mission_number)
-    end
-  end
-
   def playable?
     player_count >= 5
   end
 
+  def start_game
+    self.joinable = false
 
-  private
+    assign_spies
+    create_missions
+    assign_turn_orders
+    self.save
+    open_first_mission
+
+  end
+
+  def current_mission
+    @current_mission ||= self.missions.find {|mission| !mission.resolved }
+  end
+
+  def current_round
+    @current_round ||= current_mission.rounds.find {|round| !round.resolved}
+  end
+
+  def rounds_played
+    self.missions.reduce(0) { |total, mission| total + mission.rounds.count}
+  end
+
+  def team
+    @team ||= self.players.sort {|a,b| a.turn_order <=> b.turn_order}
+  end
+
+  # private
+
+  def open_first_mission
+    current_mission.rounds.create(leader_id: current_leader.id)
+    @status = "waiting_for_team_selection"
+    self.save
+  end
+
+  def current_leader
+    @leader ||= team[rounds_played % player_count]
+  end
+
   def mission_hash
      {
           5 => {  mission_1: {  member_count: 2, double_fail: false},
@@ -62,10 +96,34 @@ class Game < ActiveRecord::Base
       }
   end
 
+  def create_missions
+    (1..5).each do |mission_number|
+      self.missions.create(generate_mission_parameters(mission_number))
+      # p generate_mission_parameters(mission_number)
+    end
+  end
+
+  def assign_turn_orders
+    self.players.shuffle.each_with_index do  |player, index|
+      player.turn_order = index
+      player.save
+    end
+  end
+
+
+  def assign_spies
+    player_indices = (0...player_count).to_a.shuffle
+    spy_indices = []
+    num_spies.times { spy_indices << player_indices.pop }
+    spy_indices.each do |index|
+      self.players[index].is_spy = true
+      self.players[index].save
+    end
+  end
+
   def generate_mission_parameters(mission_number)
     base_mission_parameters = { resolved: false, success: false}
     mission_specific_parameters = generate_mission_specific_parameters(mission_number)
-
     base_mission_parameters.merge(mission_specific_parameters)
   end
 
@@ -73,5 +131,10 @@ class Game < ActiveRecord::Base
     mission_number_key = ('mission_' + mission_number.to_s).to_sym
     mission_number_kv = {mission_number: mission_number}
     mission_hash[player_count][mission_number_key].merge(mission_number_kv)
+  end
+
+  def num_spies
+    number_of_spies = [nil, nil, nil, nil, nil, 2,2,3,3,3,4]
+    number_of_spies[player_count]
   end
 end

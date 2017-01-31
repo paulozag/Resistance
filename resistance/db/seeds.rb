@@ -14,29 +14,22 @@ user6     = User.create!(name: 'user6', password: 'user6')
 user7     = User.create!(name: 'user7', password: 'user7')
 
 game1 = user1.games.create!(game_name: 'user 1s game')
-game1 = user2.games.create!(game_name: 'user 2s game')
+game2 = user2.games.create!(game_name: 'user 2s game')
 
 player_1  = game1.players.create!( name: 'player1',
-                                  is_spy: true,
-                                  user_id: user1)
+                                  user_id: user1.id)
 player_2  = game1.players.create!( name: 'player2',
-                                  is_spy: true,
-                                  user_id: user2)
+                                  user_id: user2.id)
 player_3  = game1.players.create!( name: 'player3',
-                                  is_spy: true,
-                                  user_id: user3)
+                                  user_id: user3.id)
 player_4  = game1.players.create!( name: 'player4',
-                                  is_spy: false,
-                                  user_id: user4)
+                                  user_id: user4.id)
 player_5  = game1.players.create!( name: 'player5',
-                                  is_spy: false,
-                                  user_id: user5)
+                                  user_id: user5.id)
 player_6  = game1.players.create!( name: 'player6',
-                                  is_spy: false,
-                                  user_id: user6)
+                                  user_id: user6.id)
 player_7  = game1.players.create!( name: 'player7',
-                                  is_spy: false,
-                                  user_id: user7)
+                                  user_id: user7.id)
 
 # mission_1 = game.missions.create(   mission_number: 1,
 #                                     member_count: 2,
