@@ -18,6 +18,7 @@ class Game < ActiveRecord::Base
 
   def start_game
     self.joinable = false
+    self.stage = 'waiting_for_team_selection'
 
     assign_spies
     create_missions
@@ -47,8 +48,6 @@ class Game < ActiveRecord::Base
 
   def open_first_mission
     current_mission.rounds.create(leader_id: current_leader.id)
-    @status = "waiting_for_team_selection"
-    self.save
   end
 
   def current_leader

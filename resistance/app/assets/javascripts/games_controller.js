@@ -34,6 +34,9 @@ GameController.prototype.startGame = function(data){
   console.log('in start game response');
   $('#waiting-to-start-container').hide()
   $('#game-in-play-container').show();
-  if (data.)
-  App.global_chat.perform('start_game', { room: gameRoomId});
+  if (data.roundLeaderId  == this.playerId){
+    console.log('round leader id == this player')
+    $('#round-leader-team-selection-container').show();
+  }
+  // App.global_chat.perform('start_game', { room: gameRoomId});
 };
