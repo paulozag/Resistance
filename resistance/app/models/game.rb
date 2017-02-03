@@ -8,6 +8,7 @@ class Game < ActiveRecord::Base
   has_many :players
   scope :joinable, -> { where(joinable: true) }
 
+
   def player_count
     self.players.count
   end
@@ -29,11 +30,11 @@ class Game < ActiveRecord::Base
   end
 
   def current_mission
-    @current_mission ||= self.missions.find {|mission| !mission.resolved }
+    self.missions.find {|mission| !mission.resolved }
   end
 
   def current_round
-    @current_round ||= current_mission.rounds.find {|round| !round.resolved}
+    current_mission.rounds.find {|round| !round.resolved}
   end
 
   def rounds_played
@@ -51,7 +52,7 @@ class Game < ActiveRecord::Base
   end
 
   def current_leader
-    @leader ||= team[rounds_played % player_count]
+    team[rounds_played % player_count]
   end
 
   def mission_hash
