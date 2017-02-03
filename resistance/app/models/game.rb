@@ -26,7 +26,6 @@ class Game < ActiveRecord::Base
     assign_turn_orders
     self.save
     open_first_mission
-
   end
 
   def current_mission
@@ -38,7 +37,7 @@ class Game < ActiveRecord::Base
   end
 
   def rounds_played
-    self.missions.reduce(0) { |total, mission| total + mission.rounds.count}
+    self.missions.reduce(0) { |total, mission| total + mission.rounds.completed.count}
   end
 
   def team

@@ -5,5 +5,5 @@ class Round < ActiveRecord::Base
   has_many :members, through: :team_mbrs
   has_many :votes, as: :voteable
   has_many :voters, through: :votes
-  scope :completed_rounds, -> { where(resolved: true)}
+  scope :completed, -> { where(resolved: true)}
 end
