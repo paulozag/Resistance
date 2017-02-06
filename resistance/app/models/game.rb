@@ -1,10 +1,10 @@
 class Game < ActiveRecord::Base
 
   attr_reader :team
-  attr_accessor :rounds
 
   belongs_to :creator, class_name: "User"
   has_many :missions
+  has_many :rounds, through: :missions
   has_many :players
   scope :joinable, -> { where(joinable: true) }
 

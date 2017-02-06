@@ -1,4 +1,4 @@
-1.  Game#current_leader is broken
+1.  Game#current_leader is broken <COMPLETED>
     scope completed_rounds to Mission.Rounds - use this value when calculating
     team[mission.completed_rounds % player_count]
 2.  create one to many for Game to Rounds (thru Missions)
