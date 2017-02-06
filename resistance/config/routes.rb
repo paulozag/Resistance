@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :players, only: [:new, :create]
 
   get '/games/:id/game_room', to: 'games#game_room'
+  get '/games/:id/show_partial', to: 'games#show_partial'
   get '/login',     to: 'sessions#new'
   post '/login',    to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
