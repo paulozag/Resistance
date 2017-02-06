@@ -1,9 +1,9 @@
 <h1>partial form</h1>
 
-<%= form_tag('/display_team_form') do %>
+<%= form_tag('/team_mbrs', ) do %>
   <% @team_members.each do |player|  %>
     <li>
-      <%= check_box_tag(name='team_member_ids[]', value=player.id) %>
+      <input type='checkbox' name='team_member_ids[]' value=<%= player.id  %> id="team-member_<%= player.id  %>">
       <%= player.name %>
     </li>
   <% end %>

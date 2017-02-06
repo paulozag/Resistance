@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :games, only: [:index, :show, :new, :create]
   resources :players, only: [:new, :create]
+  resources :team_mbrs, only: [:create]
 
   get '/games/:id/game_room', to: 'games#game_room'
   get '/games/:id/show_partial', to: 'games#show_partial'
