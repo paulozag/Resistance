@@ -1,0 +1,8 @@
+1.  Game#current_leader is broken <COMPLETED>
+    scope completed_rounds to Mission.Rounds - use this value when calculating
+    team[mission.completed_rounds % player_count]
+2.  create one to many for Game to Rounds (thru Missions) <COMPLETED>
+3.  design team-selection div for game_room.erb that processes a dynamic number selection box
+    build check box partial
+    assign partial to data element in game_start/new round controller
+    write JS code to gurantee number of selected members

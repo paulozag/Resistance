@@ -1,12 +1,13 @@
 class Game < ActiveRecord::Base
 
   attr_reader :team
-  attr_accessor :rounds
 
   belongs_to :creator, class_name: "User"
   has_many :missions
+  has_many :rounds, through: :missions
   has_many :players
   scope :joinable, -> { where(joinable: true) }
+
 
   def player_count
     self.players.count
@@ -18,25 +19,25 @@ class Game < ActiveRecord::Base
 
   def start_game
     self.joinable = false
+    self.stage = 'waiting_for_team_selection'
 
     assign_spies
     create_missions
     assign_turn_orders
     self.save
     open_first_mission
-
   end
 
   def current_mission
-    @current_mission ||= self.missions.find {|mission| !mission.resolved }
+    self.missions.find {|mission| !mission.resolved }
   end
 
   def current_round
-    @current_round ||= current_mission.rounds.find {|round| !round.resolved}
+    current_mission.rounds.find {|round| !round.resolved}
   end
 
   def rounds_played
-    self.missions.reduce(0) { |total, mission| total + mission.rounds.count}
+    self.missions.reduce(0) { |total, mission| total + mission.rounds.completed.count}
   end
 
   def team
@@ -47,12 +48,10 @@ class Game < ActiveRecord::Base
 
   def open_first_mission
     current_mission.rounds.create(leader_id: current_leader.id)
-    @status = "waiting_for_team_selection"
-    self.save
   end
 
   def current_leader
-    @leader ||= team[rounds_played % player_count]
+    team[rounds_played % player_count]
   end
 
   def mission_hash

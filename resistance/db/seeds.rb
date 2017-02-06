@@ -31,6 +31,8 @@ player_6  = game1.players.create!( name: 'player6',
 player_7  = game1.players.create!( name: 'player7',
                                   user_id: user7.id)
 
+game1.start_game
+
 # mission_1 = game.missions.create(   mission_number: 1,
 #                                     member_count: 2,
 #                                     double_fail: false,
