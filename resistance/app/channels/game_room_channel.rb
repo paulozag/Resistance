@@ -24,9 +24,13 @@ class GameRoomChannel < ApplicationCable::Channel
     game = Game.find(params[:room])
     # Start game logic in game model
     game.start_game
+    @team_members = game.team
     payload = {
-      room: params[:room],
-      testPhrase: 'received from startGameJob',
+      room:             params[:room],
+      checkboxPartial:  ApplicationController.render(
+                        partial: 'games/team_selection_check_box',
+                        locals: { team_members: @team_members}),
+      testPhrase:       'received from startGameJob',
       roundLeaderId:    game.current_round.leader.id,
       action:           'startGame'
     }

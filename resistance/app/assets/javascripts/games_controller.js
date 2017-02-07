@@ -37,6 +37,7 @@ GameController.prototype.startGame = function(data){
   if (data.roundLeaderId  == this.playerId){
     console.log('round leader id == this player')
     $('#round-leader-team-selection-container').show();
+    $('#round-leader-team-selection-container').append(data.checkboxPartial)
   }
   // App.global_chat.perform('start_game', { room: gameRoomId});
 };
