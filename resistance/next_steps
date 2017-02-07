@@ -5,7 +5,7 @@
 3.  design team-selection div for game_room.erb that processes a dynamic number selection box
     build check box partial <COMPLETE>
     *** FIND OUT HOW TO GENERATE PARTIAL ERB IN EITHER CHANNEL OR JOB ***
-    assign partial to data element in game_start/new round controller
+    assign partial to data element in game_start/new round controller <COMPLETED>
     write JS code to gurantee number of selected members
 
 4. add Round model code to accept team members for round

@@ -2,6 +2,7 @@ var gameRoomController;
 $(document).ready(function(){
   gameRoomListener();
   startGameListener();
+  roundTeamCheckboxListener();
 });
 
 var gameRoomListener = function(){
@@ -34,3 +35,13 @@ var initializeSubscription = function(){
           received: function(data){ gameRoomController.receive(data)}
         });
 };
+
+var roundTeamCheckboxListener = function(){
+  console.log('hello from checkbox listener')
+  // isolate num_players for team submission
+  // write helper to count num_checked boxes
+  // target individual checkbox, when clicked
+  //  check to see if clickable(< numPlayers)
+  //    if at max checks, prevent default of clicking the box
+  // if at max checks, enable submission button, disable all unchecked checkboxes
+}

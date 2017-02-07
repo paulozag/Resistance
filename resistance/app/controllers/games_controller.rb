@@ -28,7 +28,7 @@ class GamesController < ApplicationController
     highlight 'in show partial'
     @team_members = Game.find(params[:id]).team
     highlight "team member count: #{@team_members.count}"
-    render '_team_selection_check_box'
+    render '_team_selection_check_box', locals: {team_members: @team_members}
   end
 
   def game_room
