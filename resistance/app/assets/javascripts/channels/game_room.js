@@ -17,7 +17,7 @@ var startGameListener = function(){
     $('#start-game').on('click', function(e){
       App.global_chat.perform('start_game', {room: gameRoomId});
     })
-  }
+}
 
 var initializeSubscription = function(){
   var gameData = {  roomId: $('#game-room').data('room-id'),
