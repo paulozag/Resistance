@@ -50,3 +50,10 @@ var roundTeamCheckboxListener = function(){
 var numberOfCheckedBoxes = function($form){
   return $form.find('input:checked').length
 }
+
+var disableAllUncheckedBoxes = function($form){
+  var uncheckedBoxes = $form.find('input:checkbox:not(:checked)');
+  for (box of uncheckedBoxes){
+    $(box).attr('disabled', true)
+  }
+}
