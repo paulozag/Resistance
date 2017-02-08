@@ -38,8 +38,14 @@ var initializeSubscription = function(){
 
 var roundTeamCheckboxListener = function(){
   console.log('hello from checkbox listener')
-  // isolate num_players for team submission
-  // write helper to count num_checked boxes
+  var maxTeamSize = Number($('#team-checkbox-container').data('num-players-needed'));
+  $('body').on('click', ".pick-team-checkbox", function(event){
+    event.preventDefault;
+    console.log('inside cb listener')
+  })
+
+  // isolate num_players for team submission - done
+  // write helper to count num_checked boxes - done
   // target individual checkbox, when clicked
   //  check to see if clickable(< numPlayers)
   //    if at max checks, prevent default of clicking the box
