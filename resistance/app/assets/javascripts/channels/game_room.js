@@ -44,4 +44,5 @@ var roundTeamCheckboxListener = function(){
   //  check to see if clickable(< numPlayers)
   //    if at max checks, prevent default of clicking the box
   // if at max checks, enable submission button, disable all unchecked checkboxes
+
 }
