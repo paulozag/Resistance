@@ -46,3 +46,7 @@ var roundTeamCheckboxListener = function(){
   // if at max checks, enable submission button, disable all unchecked checkboxes
 
 }
+
+var numberOfCheckedBoxes = function($form){
+  return $form.find('input:checked').length
+}
