@@ -57,3 +57,10 @@ var disableAllUncheckedBoxes = function($form){
     $(box).attr('disabled', true)
   }
 }
+
+var enableAllCheckboxes = function($form){
+  var checkBoxes = $form.find('input:checkbox');
+  for (box of checkBoxes){
+    $(box).removeAttr('disabled');
+  }
+}
