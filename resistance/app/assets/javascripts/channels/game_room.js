@@ -3,6 +3,7 @@ $(document).ready(function(){
   gameRoomListener();
   startGameListener();
   roundTeamCheckboxListener();
+  checkboxFormSubmitListener();
 });
 
 var gameRoomListener = function(){
@@ -37,21 +38,39 @@ var initializeSubscription = function(){
 };
 
 var roundTeamCheckboxListener = function(){
-  var maxTeamSize = Number($('#team-checkbox-container').data('num-players-needed'));
-
-  $('body').on('change', ".pick-team-checkbox", function(event){
+  $('#round-leader-team-selection-container').on('click', ".pick-team-checkbox", function(event){
+    console.log('in cb click listener edited')
+    var teamSize = Number($('#team-checkbox-container').data('num-players-needed'));
     event.preventDefault;
     var $form = $(this).closest('form');
-    if (numberOfCheckedBoxes($form) > maxTeamSize ){
+    console.log('form: ', $form)
+    console.log('checked boxes: ', numberOfCheckedBoxes($form))
+    if (numberOfCheckedBoxes($form) > teamSize ){
       $(this).prop('checked', false);
-      alert('You may only select ' + maxTeamSize + ' members for this mission.')
+      alert('You may only select ' + teamSize + ' members for this mission.')
     }
 
 
     // console.log(numberOfCheckedBoxes($(this).closest('form')))
     console.log('inside cb listener')
   });
+};
 
+var checkboxFormSubmitListener = function(){
+  console.log('cbfsl firing correctly');
+  $('#round-leader-team-selection-container').on('click', '#checkbox-form-submit-button',function(event){
+    event.preventDefault();
+    var teamSize = Number($('#team-checkbox-container').data('num-players-needed'));
+    var $form = $(this).closest('form');
+    console.log('in listener')
+    console.log('team max', teamSize)
+    console.log('num checked boxes: ', numberOfCheckedBoxes($form))
+    // console.log('max team size: ', teamSize);
+    // console.log('num of checked boxes: ', numberOfCheckedBoxes($form));
+    if (teamSize > numberOfCheckedBoxes($form)){
+      alert('you must select ' + teamSize + ' members for the team')
+    }
+  })
 }
 
 var numberOfCheckedBoxes = function($form){

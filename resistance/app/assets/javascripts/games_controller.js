@@ -1,4 +1,4 @@
-var GameController = function(gameData){
+ var GameController = function(gameData){
   this.roomId = gameData.roomId;
   this.playerId = gameData.playerId;
   console.log('created gameController with room id of ' + this.roomId + ' and player id of ' + this.playerId)

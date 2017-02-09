@@ -29,7 +29,8 @@ class GameRoomChannel < ApplicationCable::Channel
       room:             params[:room],
       checkboxPartial:  ApplicationController.render(
                         partial: 'games/team_selection_check_box',
-                        locals: { team_members: @team_members}),
+                        locals: { team_members: @team_members,
+                                  game: game}),
       testPhrase:       'received from startGameJob',
       roundLeaderId:    game.current_round.leader.id,
       action:           'startGame'
