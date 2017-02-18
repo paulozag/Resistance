@@ -24,7 +24,6 @@ GameController.prototype.addPlayer = function(data){
     $('#waiting-players-list').append('<li>' + data.newPlayerName + '</li>');
   }
   if (data.creatorId == this.playerId  && data.numPlayers >= 5){
-    console.log('in show game start')
     $('#start-game-section').show()
   }
 };
@@ -35,9 +34,7 @@ GameController.prototype.startGame = function(data){
   $('#waiting-to-start-container').hide()
   $('#game-in-play-container').show();
   if (data.roundLeaderId  == this.playerId){
-    console.log('round leader id == this player')
     $('#round-leader-team-selection-container').show();
     $('#round-leader-team-selection-container').append(data.checkboxPartial)
   }
-  // App.global_chat.perform('start_game', { room: gameRoomId});
 };
