@@ -3,6 +3,13 @@
     team[mission.completed_rounds % player_count]
 2.  create one to many for Game to Rounds (thru Missions) <COMPLETED>
 3.  design team-selection div for game_room.erb that processes a dynamic number selection box
-    build check box partial
-    assign partial to data element in game_start/new round controller
-    write JS code to gurantee number of selected members
+    build check box partial <COMPLETE>
+    *** FIND OUT HOW TO GENERATE PARTIAL ERB IN EITHER CHANNEL OR JOB ***
+    assign partial to data element in game_start/new round controller <COMPLETED>
+    write JS code to gurantee number of selected members <COMPLETED>
+
+    write listener for check-box submit
+    capture team mbrs and process server side
+    done callback: hide check-box container, append go/no go form to appropriate div
+
+4. add Round model code to accept team members for round

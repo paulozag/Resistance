@@ -24,6 +24,13 @@ class GamesController < ApplicationController
     @player = Player.new
   end
 
+  def show_partial
+    @game         = Game.find(params[:id])
+    @team_members = @game.team
+    highlight "team member count: #{@team_members.count}"
+
+  end
+
   def game_room
     @game = Game.find(params[:id])
     @player = Player.find(params[:player_id])

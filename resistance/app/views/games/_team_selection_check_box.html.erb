@@ -1,0 +1,14 @@
+
+
+<h1>partial form</h1>
+
+<div id="team-checkbox-container" data-num-players-needed= <%= game.current_mission.member_count %>>
+<%= form_tag('/team_mbrs' ) do %>
+  <% team_members.each do |player|  %>
+    <li>
+      <input type='checkbox' name='team_member_ids[]' value=<%= player.id  %> id="team-member_<%= player.id  %>" class="pick-team-checkbox">
+      <%= player.name %>
+    </li>
+  <% end %>
+<%= submit_tag 'select team', {id:'checkbox-form-submit-button'} %>
+<% end %>
