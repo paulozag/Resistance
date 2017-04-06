@@ -11,6 +11,16 @@ RSpec.feature "Logging In" do
     click_button "login"
 
     expect(page).to have_content("games index")
+  end
 
+  scenario "a new user can create an account" do
+    visit "/"
+    click_link "sign up"
+
+    fill_in "Name", with: "user2"
+    fill_in "Password", with: "user2"
+    click_button "Create User"
+
+    expect(page).to have_content("games index")
   end
 end
