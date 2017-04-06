@@ -4,11 +4,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    highlight params
-    @user = User.find_by name: params[:name]
-    highlight('found alice') if @user
-    highlight('password match') if @user.password == params[:password]
-    unless @user && @user.password == params[:password]
+    highlight user_params
+    p "is there a user name: #{user_params[:name]}"
+    p "is there a password: #{user_params[:password]}"
+    @user = User.find_by name: user_params[:name]
+    unless @user && @user.password == user_params[:password]
       @errors = @user ?   ['password does not match'] :
                           ['No user by that name']
       render 'new' and return
@@ -18,5 +18,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def user_params
+    params.permit(:name, :password)
   end
 end
